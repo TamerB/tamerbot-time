@@ -4,7 +4,7 @@ const config = require('../config');
 const log = config.log();
 
 const request = require('superagent');
-const service = require('../server/service')(config, log);
+const service = require('../server/service')(config);
 const http = require('http');
 const server = http.createServer(service);
 
@@ -16,8 +16,8 @@ server.on('listening', function () {
   const announce = () => {
     request.put(`http://localhost:3000/service/time/${server.address().port}`, (err, res) => {
       if (err) {
-        log.error(err);
-        log.error('Error connecting to tamerbot');
+        log.debug(err);
+        log.info('Error connecting to tamerbot');
         return;
       }
 

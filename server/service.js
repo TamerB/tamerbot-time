@@ -5,7 +5,8 @@ const service = express();
 const request = require('superagent');
 const moment = require('moment');
 
-module.exports = (config, log) => {
+module.exports = (config) => {
+  const log = config.log();
   service.get('/service/:location', (req, res) => {
     request.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.location + '&key=' + config.google_geo_api_key, (err, response) => {
       if (err) {

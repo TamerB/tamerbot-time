@@ -1,10 +1,9 @@
 'use strict';
 
-const should = require('should');
+require('should');
 const request = require('supertest');
 const config = require('../../config');
-const log = config.log();
-const service = require('../../server/service')(config, log);
+const service = require('../../server/service')(config);
 
 describe('The express service', () => {
   describe('GET /foo', () => {
